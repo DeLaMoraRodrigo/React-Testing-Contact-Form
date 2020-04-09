@@ -3,7 +3,9 @@ import { render, fireEvent } from '@testing-library/react';
 import ContactForm from './ContactForm';
 import { act } from 'react-dom/test-utils';
 
-// test("test test", () => {});
+test("test test", () => {
+    async () => {}
+});
 
 test("Are labels visible", () => {
     const { getByText } = render(<ContactForm />);
@@ -33,7 +35,7 @@ test("Are inputs visible", () => {
     expect(messageInput).toBeVisible();
 })
 
-test("Can you type in the inputs", () => {
+test("Does the form submit and post the data from the inputs", () => {
     
     const { getByLabelText, getByTestId, findByTestId } = render(<ContactForm />);
 
@@ -65,29 +67,3 @@ test("Can you type in the inputs", () => {
         })
     }
 })
-
-// test("Can you click the submit button", () => {
-//     const { queryByTestId, getByTestId } = render(<ContactForm />);
-
-//     const submitButton = getByTestId("submitButton");
-
-//     fireEvent.click(submitButton);
-
-//     const formData = queryByTestId("preData");
-
-//     expect(formData).waitForElement().toBeInTheDocument();
-// })
-
-// test("Can you click the submit button", () => {
-//         const { queryByTestId, getByTestId } = render(<ContactForm />);
-    
-//         const submitButton = getByTestId("submitButton");
-    
-//         fireEvent.click(submitButton);
-    
-//         const formData = await waitForElement(() => {
-//             queryByTestId("preData")
-//         })
-    
-//         expect(formData).toBeInTheDocument();
-//     })
