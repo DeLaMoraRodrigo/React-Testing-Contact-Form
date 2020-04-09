@@ -14,11 +14,12 @@ const ContactForm = () => {
     <div className="App">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="firstName" id="firstNameLabel">First Name*</label>
           <input
             name="firstName"
+            aria-labelledby="firstNameLabel"
             placeholder="bill"
-            ref={register({ required: true, maxLength: 3 })}
+            ref={register({ required: true, maxLength: 10 })}
           />
           {errors.firstName && (
             <p>Looks like there was an error: {errors.firstName.type}</p>
@@ -26,9 +27,10 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="lastName">Last Name*</label>
+          <label htmlFor="lastName" id="lastNameLabel">Last Name*</label>
           <input
             name="lastName"
+            aria-labelledby="lastNameLabel"
             placeholder="luo"
             ref={register({ required: true })}
           />
@@ -38,24 +40,24 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+          <label htmlFor="email" id="emailLabel">
             Email*
           </label>
-          <input name="email" ref={register({ required: true })} />
+          <input name="email" aria-labelledby="emailLabel" placeholder="bluebill1049@hotmail.com" ref={register({ required: true })} />
           {errors.email && (
             <p>Looks like there was an error: {errors.email.type}</p>
           )}
         </div>
         <div>
-          <label htmlFor="message">Message</label>
-          <textarea name="message" ref={register({ required: false })} />
+          <label htmlFor="message" id="messageLabel">Message</label>
+          <textarea name="message" aria-labelledby="messageLabel" ref={register({ required: false })} />
         </div>
         {data && (
-          <pre style={{ textAlign: "left", color: "white" }}>
+          <pre data-testid={"preData"} style={{ textAlign: "left", color: "white" }}>
             {JSON.stringify(data, null, 2)}
           </pre>
         )}
-        <input type="submit" />
+        <input type="submit" data-testid="submitButton" />
       </form>
     </div>
   );
