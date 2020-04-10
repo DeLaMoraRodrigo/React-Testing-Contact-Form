@@ -43,18 +43,21 @@ test("Does the form submit and post the data from the inputs", () => {
     const lastNameInput = getByLabelText(/Last Name*/i);
     const emailInput = getByLabelText(/Email*/i);
     const messageInput = getByLabelText(/Message/i);
+    const termsInput = getByLabelText(/Terms/i);
 
     act(() => {
     fireEvent.change(firstNameInput, { target: { value: 'Rodrigo' } });
     fireEvent.change(lastNameInput, { target: { value: 'De La Mora' } });
     fireEvent.change(emailInput, { target: { value: 'delamorarodrigo3141@yahoo.com' } });
     fireEvent.change(messageInput, { target: { value: 'This is my contact info' } });
+    fireEvent.click(termsInput);
     })
 
     expect(firstNameInput.value).toBe('Rodrigo');
     expect(lastNameInput.value).toBe('De La Mora');
     expect(emailInput.value).toBe('delamorarodrigo3141@yahoo.com');
     expect(messageInput.value).toBe('This is my contact info');
+    expect(termsInput.checked).toEqual(true);
 
     const submitButton = getByTestId("submitButton");
     async () => {
